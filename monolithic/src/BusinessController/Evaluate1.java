@@ -118,7 +118,7 @@ public  class Evaluate1 implements Calculator
 
 	public double divide(double a,double b) {
 		// TODO Auto-generated method stub
-		return a*b;
+		return a/b;
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
