@@ -1,13 +1,14 @@
 package BusinessController;
 
 import java.util.Scanner;
+
 import java.util.Stack;
 
 import Interface.Calculator;
 
 public  class Evaluate1 implements Calculator
 {
-    public static double evaluate(String expression)
+    public double evaluate(String expression)
     {
         char[] tokens = expression.toCharArray();
 
@@ -58,7 +59,7 @@ public  class Evaluate1 implements Calculator
         return values.pop();
     }
 
-    public static boolean hasPrecedence(char op1, char op2)
+    public boolean hasPrecedence(char op1, char op2)
     {
         if (op2 == '(' || op2 == ')')
             return false;
@@ -68,10 +69,26 @@ public  class Evaluate1 implements Calculator
             return true;
     }
 
-   // public static Double perform(char op, double b, double a)
-    //{
-     // 
-   // }
+   public Double perform(char op, double b, double a)
+    {
+	   switch (op)
+       {
+       case '+':
+          return add(a,b);
+           
+       case '-':
+          return subtract(a,b);
+       case '*':
+         return multiply(a,b);
+       case '/':
+           if (b == 0)
+               throw new
+               UnsupportedOperationException("Cannot divide by zero");
+           return divide(a,b);
+       }
+       return 0.0;
+     
+   }
    
 
 	public static void Print( double result)
@@ -82,55 +99,42 @@ public  class Evaluate1 implements Calculator
 	
 
 	
-	public double add(Double a,Double b) {
+	public double add(double a,double b) {
 		// TODO Auto-generated method stub
 		return a+b;
 	}
 
 	
-	public double subtract(Double a,Double b) {
+	public double subtract(double a,double b) {
 		// TODO Auto-generated method stub
 		return a-b;
 	}
 
-	public double multiply(Double a,Double b) {
+	public double multiply(double a,double b) {
 		// TODO Auto-generated method stub
 		return a*b;
 	}
 
 
-	public double divide(Double a,Double b) {
+	public double divide(double a,double b) {
 		// TODO Auto-generated method stub
 		return a*b;
 	}
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		char op;
+		Evaluate1 e = new Evaluate1();
 		String exp="";
+		
 		System.out.println("Enter the expression: ");
 		Scanner sc1=new Scanner(System.in);
 		exp=sc1.nextLine();
 		Double result;
-		  switch (op)
-	        {
-	        case '+':
-	            add(a,b);
-	            
-	            break;
-	        case '-':
-	           subtract(a,b);
-	        case '*':
-	          multiply(a,b);
-	        case '/':
-	            if (b == 0)
-	                throw new
-	                UnsupportedOperationException("Cannot divide by zero");
-	            divide(a,b);
-	        }
-	        return 0.0;
-		result=evaluate(exp);
+		  
+		result=e.evaluate(exp);
 		Print(result);
 
 	}
 
 }
+
